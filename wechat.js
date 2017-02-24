@@ -196,3 +196,4 @@ class Wechat {
         });
     }
 }
+module.exports = Wechat;
