@@ -1,9 +1,5 @@
 const ajax = require('request');
 
-// 需要是服务号的
-const APPID = 'wx232df512421';
-const APPSECRET = 'a7c5cfa3d62f664d5fed';
-
 function makeUrl(options) {
     return url.format(options);
 }
@@ -63,6 +59,7 @@ function proxy(options) {
  */
 class Wechat {
     constructor(options) {
+        // 需要用服务号的
         this.appid = options.appid;
         this.secret = options.secret;
         this.state = options.state || 'a-zA-Z0-9';
@@ -131,6 +128,26 @@ class Wechat {
         });
         return proxy({
             url: accessTokenUrl
+        });
+    }
+
+    /**
+     * 刷新用户Token
+     * @returns {*}
+     */
+    refreshUserToken(options){
+        let tokenUrl = makeUrl({
+            protocol: 'https',
+            host: 'api.weixin.qq.com',
+            pathname: '/sns/oauth2/refresh_token',
+            query: {
+                openid: options.openid,
+                grant_type: 'refresh_token',
+                refresh_token: options.refresh_token
+            }
+        });
+        return proxy({
+            url: tokenUrl
         });
     }
 
