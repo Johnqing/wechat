@@ -1,0 +1,13 @@
+{
+  "name": "wechat",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    
+  },
+  "dependencies": {
+    "request": "^2.64.0"
+  },
+  "devDependencies": {
+  }
+}
